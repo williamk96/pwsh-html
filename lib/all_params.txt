@@ -4,192 +4,284 @@ param (
         [string[]]$Text,
 
         # Optional parameters for HTML Global Attributes
-        [Parameter(HelpMessage="Specify a single character which will be used for the accesskey attribute. The accesskey attribute specifies a shortcut key to activate/focus an element.")]
+        [Parameter(HelpMessage="Specify a single character which will be used for the accesskey attribute. \
+        The accesskey attribute specifies a shortcut key to activate/focus an element.")]
         [string[]]$accesskey,
-        [Parameter(HelpMessage="Specify one or more class names separates by commas. The class attribute is mostly used to point to a class in a style sheet. However, it can also be used by a JavaScript (via the HTML DOM) to make changes to HTML elements with a specified class.")]
+
+        [Parameter(HelpMessage="Specify one or more class names separates by commas. \
+        The class attribute is mostly used to point to a class in a style sheet. \
+        However, it can also be used by a JavaScript (via the HTML DOM) to make changes to HTML elements with a specified class.")]
         [string[]]$class,
-        [Parameter(HelpMessage="Either true or false. Use this flag to set contenteditable=True. This attribute specifies whether the content of an element is editable or not")]
+
+        [Parameter(HelpMessage="Either true or false. \
+        This attribute specifies whether the content of an element is editable or not. \
+        Default: False")]
         [switch[]]$contenteditable,
+
+        [Parameter(HelpMessage="Specifiy a custom data label in the format <data-some-label>. \
+        The data-* attribute is used to store custom data private to the page or application.")]
         [string[]]$data,
-        [Parameter(HelpMessage="The dir attribute specifies the text direction of the element's content. Usage: < ltr | rtl | auto >")]
+
+        [Parameter(HelpMessage="The dir attribute specifies the text direction of the element's content. \
+        Usage: < ltr | rtl | auto >")]
         [string[]]$dir,
-        [Parameter(HelpMessage="Either true or false. The draggable attribute specifies whether an element is draggable or not.")]
+
+        [Parameter(HelpMessage="Either true or false. \
+        The draggable attribute specifies whether an element is draggable or not. \
+        Default: False")]
         [switch[]]$draggable,
-        [Parameter(HelpMessage="Either true or false. This attribute specifies that an element is not yet, or is no longer, relevant.")]
+
+        [Parameter(HelpMessage="Either true or false. \
+        This attribute specifies that an element is not yet, or is no longer, relevant. \
+        Default: False")]
         [switch[]]$hidden,
-        [Parameter(HelpMessage="text")]
+
+        [Parameter(HelpMessage="Specify a unique string to identify the element.")]
         [string[]]$id,
-        [Parameter(HelpMessage="Specify a ")]
+
+        [Parameter(HelpMessage="Specify the language of the element's content.")]
         [string[]]$lang,
-        [Parameter(HelpMessage="Specify a ")]
+
+        [Parameter(HelpMessage="Either true or false. \
+        Specifies whether the element is to have its spelling and grammar checked or not. \
+        Default: False")]
         [string[]]$spellcheck,
-        [Parameter(HelpMessage="Specify a ")]
+
+        [Parameter(HelpMessage="Specify an inline CSS style for this element.")]
         [string[]]$style,
-        [Parameter(HelpMessage="Specify a ")]
+        
+        [Parameter(HelpMessage="Specify the tabbing order of an element. \
+        (when the 'tab' button is used for navigating)")]
         [string[]]$tabindex,
-        [Parameter(HelpMessage="Specify a ")]
+
+        [Parameter(HelpMessage="Specify extra information about an element. \
+        The information is most often shown as a tooltip text when the mouse moves over the element.")]
         [string[]]$title,
-        [Parameter(HelpMessage="Specify a ")]
+
+        [Parameter(HelpMessage="Either Yes or No. \
+        Specify whether the content of an element should be translated or not. \
+        Default: Yes")]
         [string[]]$translate,
 
         # Optional parameters for HTML Window Event Attributes NOTE: for <body> tag only
-        [Parameter(HelpMessage="Specify a ")]
+        [Parameter(HelpMessage="Specify a string of JavaScript code to be run after the document is printed.")]
         [string[]]$JSonafterprint,
-        [Parameter(HelpMessage="Specify a ")]
+
+        [Parameter(HelpMessage="Specify a string of JavaScript code to be run before the document is printed.")]
         [string[]]$JSonbeforeprint,
-        [Parameter(HelpMessage="Specify a ")]
+
+        [Parameter(HelpMessage="Specify a string of JavaScript code to be run when the document is about to be unloaded.")]
         [string[]]$JSonbeforeunload,
-        [Parameter(HelpMessage="Specify a ")]
+
+        [Parameter(HelpMessage="Specify a string of JavaScript code to be run when an error occurs inside the <body> tag.")]
         [string[]]$JSonerror,
-        [Parameter(HelpMessage="Specify a ")]
+
+        [Parameter(HelpMessage="Specify a string of JavaScript code to be run when there has been changes to the anchor part of the URL.")]
         [string[]]$JSonhashchange,
-        [Parameter(HelpMessage="Specify a ")]
+
+        [Parameter(HelpMessage="Specify a string of JavaScript code to be run after the page is finished loading.")]
         [string[]]$JSonload,
-        [Parameter(HelpMessage="Specify a ")]
+
+        [Parameter(HelpMessage="Specify a string of JavaScript code to be run when the message is triggered.")]
         [string[]]$JSonmessage,
-        [Parameter(HelpMessage="Specify a ")]
+
+        [Parameter(HelpMessage="Specify a string of JavaScript code to be run when the browser starts to work offline.")]
         [string[]]$JSonoffline,
-        [Parameter(HelpMessage="Specify a ")]
+
+        [Parameter(HelpMessage="Specify a string of JavaScript code to be run when the browser starts to work online.")]
         [string[]]$JSononline,
-        [Parameter(HelpMessage="Specify a ")]
+
+        [Parameter(HelpMessage="Specify a string of JavaScript code to be run when a user navigates away from a page.")]
         [string[]]$JSonpagehide,
-        [Parameter(HelpMessage="Specify a ")]
+        
+        [Parameter(HelpMessage="Specify a string of JavaScript code to be run when a user navigates to a page.")]
         [string[]]$JSonpageshow,
-        [Parameter(HelpMessage="Specify a ")]
+
+        [Parameter(HelpMessage="Specify a string of JavaScript code to be run when the window's history changes.")]
         [string[]]$JSonpopstate,
-        [Parameter(HelpMessage="Specify a ")]
+
+        [Parameter(HelpMessage="Specify a string of JavaScript code to be run when the browser window is resized.")]
         [string[]]$JSonresize,
-        [Parameter(HelpMessage="Specify a ")]
+
+        [Parameter(HelpMessage="Specify a string of JavaScript code to be run when a Web Storage area is updated.")]
         [string[]]$JSonstorage,
-        [Parameter(HelpMessage="Specify a ")]
+
+        [Parameter(HelpMessage="Specify a string of JavaScript code to be run once a page has unloaded (or the browser window has been closed).")]
         [string[]]$JSonunload,
 
         # Optional parameters for HTML Form Events
-        [Parameter(HelpMessage="Specify a ")]
+        [Parameter(HelpMessage="Specify a string of JavaScript code to be run the moment that the element loses focus.")]
         [string[]]$JSonblur,
-        [Parameter(HelpMessage="Specify a ")]
+
+        [Parameter(HelpMessage="Specify a string of JavaScript code to be run the moment when the value of the element is changed.")]
         [string[]]$JSonchange,
-        [Parameter(HelpMessage="Specify a ")]
+
+        [Parameter(HelpMessage="Specify a string of JavaScript code to be run when a context menu is triggered.")]
         [string[]]$JSoncontextmenu,
-        [Parameter(HelpMessage="text")]
+
+        [Parameter(HelpMessage="Specify a string of JavaScript code to be run the moment when the element gets focus.")]
         [string[]]$JSonfocus,
-        [Parameter(HelpMessage="Specify a ")]
+
+        [Parameter(HelpMessage="Specify a string of JavaScript code to be run when an element gets user input.")]
         [string[]]$JSoninput,
-        [Parameter(HelpMessage="Specify a ")]
+
+        [Parameter(HelpMessage="Specify a string of JavaScript code to be run when an element is invalid.")]
         [string[]]$JSoninvalid,
-        [Parameter(HelpMessage="Specify a ")]
+
+        [Parameter(HelpMessage="Specify a string of JavaScript code to be run when the Reset button in a form is clicked.")]
         [string[]]$JSonreset,
-        [Parameter(HelpMessage="Specify a ")]
+
+        [Parameter(HelpMessage="Specify a string of JavaScript code to be run when the user writes something in a search field (for <input="search">).")]
         [string[]]$JSonsearch,
-        [Parameter(HelpMessage="Specify a ")]
+
+        [Parameter(HelpMessage="Specify a string of JavaScript code to be run after some text has been selected in an element.")]
         [string[]]$JSonselect,
-        [Parameter(HelpMessage="Specify a ")]
+
+        [Parameter(HelpMessage="Specify a string of JavaScript code to be run when a form is submitted.")]
         [string[]]$JSonsubmit,
 
         # Optional parameters for HTML Keyboard Events
-        [Parameter(HelpMessage="Specify a ")]
+        [Parameter(HelpMessage="Specify a string of JavaScript code to be run when a user is pressing a key.")]
         [string[]]$JSonkeydown,
-        [Parameter(HelpMessage="Specify a ")]
+
+        [Parameter(HelpMessage="Specify a string of JavaScript code to be run when a user presses a key.")]
         [string[]]$JSonkeypress,
-        [Parameter(HelpMessage="Specify a ")]
+
+        [Parameter(HelpMessage="Specify a string of JavaScript code to be run when a user releases a key.")]
         [string[]]$JSonkeyup,
 
         # Optional parameters for HTML Mouse Events
-        [Parameter(HelpMessage="Specify a ")]
+        [Parameter(HelpMessage="Specify a string of JavaScript code to be run when there is a mouse click on the element.")]
         [string[]]$JSonclick,
-        [Parameter(HelpMessage="Specify a ")]
+
+        [Parameter(HelpMessage="Specify a string of JavaScript code to be run when there is a mouse double-click on the element.")]
         [string[]]$JSondblclick,
-        [Parameter(HelpMessage="Specify a ")]
+
+        [Parameter(HelpMessage="Specify a string of JavaScript code to be run when a mouse button is pressed down on an element.")]
         [string[]]$JSonmousedown,
-        [Parameter(HelpMessage="Specify a ")]
+
+        [Parameter(HelpMessage="Specify a string of JavaScript code to be run when the mouse pointer is moving while it is over an element.")]
         [string[]]$JSonmousemove,
-        [Parameter(HelpMessage="Specify a ")]
+
+        [Parameter(HelpMessage="Specify a string of JavaScript code to be run when the mouse pointer moves out of an element.")]
         [string[]]$JSonmouseout,
-        [Parameter(HelpMessage="Specify a ")]
+
+        [Parameter(HelpMessage="Specify a string of JavaScript code to be run when the mouse pointer moves over an element.")]
         [string[]]$JSonmouseover,
-        [Parameter(HelpMessage="Specify a ")]
+
+        [Parameter(HelpMessage="Specify a string of JavaScript code to be run when a mouse button is released over an element.")]
         [string[]]$JSonmouseup,
-        [Parameter(HelpMessage="Specify a ")]
-        [string[]]$JSonmousewheel,
-        [Parameter(HelpMessage="Specify a ")]
+
+        [Parameter(HelpMessage="Specify a string of JavaScript code to be run when the mouse wheel rolls up or down over an element.")]
         [string[]]$JSonwheel,
 
         # Optional parameters for HTML Drag Events
-        [Parameter(HelpMessage="Specify a ")]
+        [Parameter(HelpMessage="Specify a string of JavaScript code to be run when an element is dragged.")]
         [string[]]$JSondrag,
-        [Parameter(HelpMessage="Specify a ")]
+
+        [Parameter(HelpMessage="Specify a string of JavaScript code to be run at the end of a drag operation.")]
         [string[]]$JSondragend,
-        [Parameter(HelpMessage="Specify a ")]
+
+        [Parameter(HelpMessage="Specify a string of JavaScript code to be run when an element has been dragged to a valid drop target.")]
         [string[]]$JSondragenter,
-        [Parameter(HelpMessage="Specify a ")]
+
+        [Parameter(HelpMessage="Specify a string of JavaScript code to be run when an element leaves a valid drop target")]
         [string[]]$JSondragleave,
-        [Parameter(HelpMessage="Specify a ")]
+
+        [Parameter(HelpMessage="Specify a string of JavaScript code to be run")]
         [string[]]$JSondragover,
-        [Parameter(HelpMessage="Specify a ")]
+
+        [Parameter(HelpMessage="Specify a string of JavaScript code to be run")]
         [string[]]$JSondragstart,
-        [Parameter(HelpMessage="Specify a ")]
+
+        [Parameter(HelpMessage="Specify a string of JavaScript code to be run")]
         [string[]]$JSondrop,
-        [Parameter(HelpMessage="Specify a ")]
+
+        [Parameter(HelpMessage="Specify a string of JavaScript code to be run")]
         [string[]]$JSonscroll,
 
         # Optional parameters for HTML Clipboard Events
-        [Parameter(HelpMessage="Specify a ")]
+        [Parameter(HelpMessage="Specify a string of JavaScript code to be run")]
         [string[]]$JSoncopy,
-        [Parameter(HelpMessage="Specify a ")]
+
+        [Parameter(HelpMessage="Specify a string of JavaScript code to be run")]
         [string[]]$JSoncut,
-        [Parameter(HelpMessage="Specify a ")]
+
+        [Parameter(HelpMessage="Specify a string of JavaScript code to be run")]
         [string[]]$JSonpaste,
 
         # Optional parameters for HTML Media Events NOTE: Applies to all, but mainly used for <audio>, <embed>, <img>, <object>, and <video>
-        [Parameter(HelpMessage="Specify a ")]
+        [Parameter(HelpMessage="Specify a string of JavaScript code to be run")]
         [string[]]$JSonabort,
-        [Parameter(HelpMessage="Specify a ")]
+
+        [Parameter(HelpMessage="Specify a string of JavaScript code to be run")]
         [string[]]$JSoncanplay,
-        [Parameter(HelpMessage="Specify a ")]
+
+        [Parameter(HelpMessage="Specify a string of JavaScript code to be run")]
         [string[]]$JSoncanplaythrough,
-        [Parameter(HelpMessage="Specify a ")]
+
+        [Parameter(HelpMessage="Specify a string of JavaScript code to be run")]
         [string[]]$JSoncuechange,
-        [Parameter(HelpMessage="Specify a ")]
+
+        [Parameter(HelpMessage="Specify a string of JavaScript code to be run")]
         [string[]]$JSondurationchange,
-        [Parameter(HelpMessage="Specify a ")]
+
+        [Parameter(HelpMessage="Specify a string of JavaScript code to be run")]
         [string[]]$JSonemptied,
-        [Parameter(HelpMessage="Specify a ")]
+
+        [Parameter(HelpMessage="Specify a string of JavaScript code to be run")]
         [string[]]$JSonended,
-        [Parameter(HelpMessage="Specify a ")]
+
+        [Parameter(HelpMessage="Specify a string of JavaScript code to be run")]
         [string[]]$JSonerror,
-        [Parameter(HelpMessage="Specify a ")]
+
+        [Parameter(HelpMessage="Specify a string of JavaScript code to be run")]
         [string[]]$JSonloadeddata,
-        [Parameter(HelpMessage="Specify a ")]
+
+        [Parameter(HelpMessage="Specify a string of JavaScript code to be run")]
         [string[]]$JSonloadedmetadata,
-        [Parameter(HelpMessage="Specify a ")]
+
+        [Parameter(HelpMessage="Specify a string of JavaScript code to be run")]
         [string[]]$JSononloadstart,
-        [Parameter(HelpMessage="Specify a ")]
+
+        [Parameter(HelpMessage="Specify a string of JavaScript code to be run")]
         [string[]]$JSonpause,
-        [Parameter(HelpMessage="Specify a ")]
+
+        [Parameter(HelpMessage="Specify a string of JavaScript code to be run")]
         [string[]]$JSonplay,
-        [Parameter(HelpMessage="Specify a ")]
+
+        [Parameter(HelpMessage="Specify a string of JavaScript code to be run")]
         [string[]]$JSonplaying,
-        [Parameter(HelpMessage="Specify a ")]
+
+        [Parameter(HelpMessage="Specify a string of JavaScript code to be run")]
         [string[]]$JSonprogress,
-        [Parameter(HelpMessage="Specify a ")]
+
+        [Parameter(HelpMessage="Specify a string of JavaScript code to be run")]
         [string[]]$JSonratechange,
-        [Parameter(HelpMessage="Specify a ")]
+
+        [Parameter(HelpMessage="Specify a string of JavaScript code to be run")]
         [string[]]$JSonseeked,
-        [Parameter(HelpMessage="Specify a ")]
+
+        [Parameter(HelpMessage="Specify a string of JavaScript code to be run")]
         [string[]]$JSonseeking,
-        [Parameter(HelpMessage="Specify a ")]
+
+        [Parameter(HelpMessage="Specify a string of JavaScript code to be run")]
         [string[]]$JSonstalled,
-        [Parameter(HelpMessage="Specify a ")]
+
+        [Parameter(HelpMessage="Specify a string of JavaScript code to be run")]
         [string[]]$JSonsuspend,
-        [Parameter(HelpMessage="Specify a ")]
+        
+        [Parameter(HelpMessage="Specify a string of JavaScript code to be run")]
         [string[]]$JSontimeupdate,
-        [Parameter(HelpMessage="Specify a ")]
+
+        [Parameter(HelpMessage="Specify a string of JavaScript code to be run")]
         [string[]]$JSonvolumechange,
-        [Parameter(HelpMessage="Specify a ")]
+
+        [Parameter(HelpMessage="Specify a string of JavaScript code to be run")]
         [string[]]$JSonwaiting,
 
         # Optional parameters for HTML Misc Events
-        [Parameter(HelpMessage="spec")]
+        [Parameter(HelpMessage="Specify a string of JavaScript code to be run")]
         [string[]]$JSontoggle
 
     )
