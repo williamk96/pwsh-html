@@ -9,7 +9,7 @@ function New-HOneTag {
         # Optional parameters for HTML Global Attributes
         [Parameter(HelpMessage="Supply a single character which will be used for the accesskey attribute. \
         The accesskey attribute specifies a shortcut key to activate/focus the element.")]
-        [string[]]$accesskey,
+        [string[]]$AccessKey,
 
         [Parameter(HelpMessage="Supply one or more class names separates by commas. \
         The class attribute is mostly used to point to a class in a style sheet. \
@@ -76,7 +76,15 @@ function New-HOneTag {
 
     # Ensure parameters follow html convention
 
-    if ( !($accesskey -like $null) ) {}
+    if ( ($AccessKey -like $null) -or ($AccessKey.Length -gt 1) ) {
+
+        Write-Error -Category InvalidArgument -Message "AccessKey must be a single character."
+
+    }
+
+    # If the user has specified an accesskey that is a single character, format it in html
+    $AccessKey  = "accesskey=""$($AccessKey)"""
+
     if ( !($class -like $null) ) {}
     if ( !($contenteditable -like $null) ) {}
     if ( !($data -like $null) ) {}
@@ -92,7 +100,7 @@ function New-HOneTag {
     if ( !($translate -like $null) ) {}
 
     # Concatenate each attribute
-    $params = $accesskey + $class + $contenteditable + $data + $dir + $draggable + $hidden + $id + $lang + $spellcheck + $style + $tabindex + $title + $translate
+    $params = $AccessKey + $class + $contenteditable + $data + $dir + $draggable + $hidden + $id + $lang + $spellcheck + $style + $tabindex + $title + $translate
 
     $Open = "<h1" + $params + ">"
     $Close = "</h1>"
