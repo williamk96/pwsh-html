@@ -85,8 +85,11 @@ function New-HOneTag {
     # If the user has specified an accesskey that is a single character, format it in html
     $AccessKey  = "accesskey=""$($AccessKey)"""
 
-    if ( !($class -like $null) ) {}
-    if ( !($contenteditable -like $null) ) {}
+    if ( !($contenteditable -like $null) ) {
+
+        
+
+    }
     if ( !($data -like $null) ) {}
     if ( !($dir -like $null) ) {}
     if ( !($draggable -like $null) ) {}
