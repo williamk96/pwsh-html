@@ -14,12 +14,13 @@ function New-HOneTag {
         [Parameter(HelpMessage="Supply one or more class names separates by commas. \
         The class attribute is mostly used to point to a class in a style sheet. \
         However, it can also be used by a JavaScript (via the HTML DOM) to make changes to HTML elements with a specified class.")]
-        [string[]]$class,
+        [string[]]$Class,
 
         [Parameter(HelpMessage="Either true or false. \
         This attribute specifies whether the content of the element is editable or not. \
         Default: False")]
-        [switch[]]$contenteditable,
+        [ValidateSet("True","False")]
+        [switch[]]$ContentEditable,
 
         [Parameter(HelpMessage="Specifiy a custom data label in the format <data-some-label>. \
         The data-* attribute is used to store custom data private to the page or application.")]
@@ -79,13 +80,24 @@ function New-HOneTag {
     if ( ($AccessKey -like $null) -or ($AccessKey.Length -gt 1) ) {
 
         Write-Error -Category InvalidArgument -Message "AccessKey must be a single character."
+        return
 
     }
 
     # If the user has specified an accesskey that is a single character, format it in html
-    $AccessKey  = "accesskey=""$($AccessKey)"""
+    if ($AccessKey) {
+        
+        $AccessKey  = "accesskey=""$($AccessKey)"""
 
-    if ( !($contenteditable -like $null) ) {
+    }
+
+    if ($Class) {
+        
+        $Class = "class=""$($Class)"""
+
+    }
+
+    if ( !($contenteditable -like $null) -and (($contenteditable -like "Yes") -or ($contenteditable -like "No"))) {
 
         
 
