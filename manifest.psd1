@@ -30,7 +30,7 @@ CompanyName = 'BSR Enterprises, LLC.'
 Copyright = '(c) BSR Enterprises, LLC. All rights reserved.'
 
 # Description of the functionality provided by this module
-# Description = ''
+# Description = 'The pwsh-html module provides a library of functions to generate html tags based on string inputs. The functions can be encapsulated in one another to build static pages.'
 
 # Minimum version of the PowerShell engine required by this module
 # PowerShellVersion = ''

@@ -4,68 +4,73 @@ function New-HOneTag {
 
         [Parameter(Mandatory,
         HelpMessage="Enter the text which will be inside the <h1> tag")]
-        [string[]]$Text,
+        [string]$Text,
 
         # Optional parameters for HTML Global Attributes
         [Parameter(HelpMessage="Supply a single character which will be used for the accesskey attribute. \
         The accesskey attribute specifies a shortcut key to activate/focus the element.")]
-        [string[]]$AccessKey,
+        [string]$AccessKey,
 
-        [Parameter(HelpMessage="Supply one or more class names separates by commas. \
+        [Parameter(HelpMessage="Supply one or more class names separates by spaces. \
         The class attribute is mostly used to point to a class in a style sheet. \
         However, it can also be used by a JavaScript (via the HTML DOM) to make changes to HTML elements with a specified class.")]
-        [string[]]$Class,
+        [string]$Class,
 
         [Parameter(HelpMessage="Either true or false. \
         This attribute specifies whether the content of the element is editable or not. \
         Default: False")]
-        [ValidateSet("True","False")]
-        [switch[]]$ContentEditable,
+        [ValidateSet("True","False","")]
+        [string[]]$ContentEditable,
 
-        [Parameter(HelpMessage="Specifiy a custom data label in the format <data-some-label>. \
+        [Parameter(HelpMessage="Specifiy a custom data label in the format <some-label='data'>. \
         The data-* attribute is used to store custom data private to the page or application.")]
-        [string[]]$data,
+        [string]$Data,
 
         [Parameter(HelpMessage="The dir attribute specifies the text direction of the element's content. \
         Usage: < ltr | rtl | auto >")]
-        [string[]]$dir,
+        [ValidateSet("ltr","rtl","auto","")]
+        [string[]]$Dir,
 
         [Parameter(HelpMessage="Either true or false. \
         The draggable attribute specifies whether the element is draggable or not. \
         Default: False")]
-        [switch[]]$draggable,
+        [ValidateSet("True","False","")]
+        [string[]]$Draggable,
 
         [Parameter(HelpMessage="Either true or false. \
         This attribute specifies that the element is not yet, or is no longer, relevant. \
         Default: False")]
-        [switch[]]$hidden,
+        [ValidateSet("True","False","")]
+        [string[]]$Hidden,
 
         [Parameter(HelpMessage="Supply a unique string to identify the element.")]
-        [string[]]$id,
+        [string]$Id,
 
         [Parameter(HelpMessage="Supply the language of the element's content.")]
-        [string[]]$lang,
+        [string]$Lang,
 
         [Parameter(HelpMessage="Either true or false. \
         Specifies whether the element is to have its spelling and grammar checked or not. \
         Default: False")]
-        [string[]]$spellcheck,
+        [ValidateSet("True","False","")]
+        [string[]]$Spellcheck,
 
-        [Parameter(HelpMessage="Supply an inline CSS style for this element.")]
-        [string[]]$style,
+        [Parameter(HelpMessage="Supply an inline CSS style string for this element.")]
+        [string]$Style,
 
         [Parameter(HelpMessage="Supply the tabbing order for the element. \
         (when the 'tab' button is used for navigating)")]
-        [string[]]$tabindex,
+        [string]$Tabindex,
 
         [Parameter(HelpMessage="Supply extra information about the element. \
         The information is most often shown as a tooltip text when the mouse moves over the element.")]
-        [string[]]$title,
+        [string]$Title,
 
         [Parameter(HelpMessage="Either Yes or No. \
         Specify whether the content of the element should be translated or not. \
         Default: Yes")]
-        [string[]]$translate
+        [ValidateSet("Yes","No","")]
+        [string[]]$Translate
 
     )
 
@@ -75,53 +80,164 @@ function New-HOneTag {
     
     #>
 
-    # Ensure parameters follow html convention
+    # Ensure parameters become html attributes
 
-    if ( ($AccessKey -like $null) -or ($AccessKey.Length -gt 1) ) {
+    if ( $AccessKey.Length -gt 1 ) {
 
         Write-Error -Category InvalidArgument -Message "AccessKey must be a single character."
         return
 
+    } elseif ( $AccessKey -like $null ) {
+
+        $AccessKey = ""
+
+    } else {
+
+        $AccessKey  = "accesskey=""$($AccessKey)"" "
+
     }
 
-    # If the user has specified an accesskey that is a single character, format it in html
-    if ($AccessKey) {
+    if ( !($Class -like $null) ) {
         
-        $AccessKey  = "accesskey=""$($AccessKey)"""
+        $Class = "class=""$($Class)"" "
 
     }
 
-    if ($Class) {
-        
-        $Class = "class=""$($Class)"""
+    if ( ($ContentEditable -like $null) -or ($ContentEditable -like "False") ) {
+
+        $ContentEditable = ""
+
+    } else {
+
+        $ContentEditable = "contenteditable=""$($ContentEditable)"" "
 
     }
 
-    if ( !($contenteditable -like $null) -and (($contenteditable -like "Yes") -or ($contenteditable -like "No"))) {
+    if ( $Data -like $null ) {
 
-        
+        $Data = ""
+
+    } else {
+
+        $Data = "data-" + $($Data) + " "
 
     }
-    if ( !($data -like $null) ) {}
-    if ( !($dir -like $null) ) {}
-    if ( !($draggable -like $null) ) {}
-    if ( !($hidden -like $null) ) {}
-    if ( !($id -like $null) ) {}
-    if ( !($lang -like $null) ) {}
-    if ( !($spellcheck -like $null) ) {}
-    if ( !($style -like $null) ) {}
-    if ( !($tabindex -like $null) ) {}
-    if ( !($title -like $null) ) {}
-    if ( !($translate -like $null) ) {}
+    if ( $Dir -like $null ) {
+
+        $Dir = ""
+
+    } else {
+
+        $Dir = "dir=""$($Dir)"" "
+
+    }
+
+    if ( ($Draggable -like $null) -or ($Draggable -like "False") ) {
+
+        $Draggable = ""
+
+    } else {
+
+        $Draggable = "draggable=""$($Draggable)"" "
+
+    }
+
+    if ( ($Hidden -like $null) -or ($Hidden -like "False") ) {
+
+        $Hidden = ""
+
+    } else {
+
+        $Hidden = "hidden=""$($Hidden)"" "
+
+    }
+
+    if ( $Id -like $null ) {
+
+        $Id = ""
+
+    } else {
+
+        $Id = "id=""$($Id)"" "
+
+    }
+
+    if ( $Lang -like $null ) {
+
+        $Lang = ""
+
+    } else {
+
+        $Lang = "lang=""$($Lang)"" "
+
+    }
+
+    if ( ($Spellcheck -like $null) -or ($Spellcheck -like "False") ) {
+
+        $Spellcheck = ""
+
+    } else {
+
+        $Spellcheck = "spellcheck=""$($Spellcheck)"" "
+
+    }
+
+    if ( $Style -like $null ) {
+
+        $Style = ""
+
+    } else {
+
+        $Style = "style=""$($Style)"" "
+
+    }
+
+    if ( $Tabindex -like $null ) {
+
+        $Tabindex = ""
+
+    } else {
+
+        $Tabindex = "tabindex=""$($Tabindex)"" "
+
+    }
+
+    if ( $Title -like $null ) {
+
+        $Title = ""
+
+    } else {
+
+        $Title = "title=""$($Title)"" "
+
+    }
+    if ( ($Translate -like $null) -or ($Translate -like "Yes") ) {
+
+        $Translate = ""
+
+    } else {
+
+        $Translate = "lang=""$($Translate)"" "
+
+    }
 
     # Concatenate each attribute
-    $params = $AccessKey + $class + $contenteditable + $data + $dir + $draggable + $hidden + $id + $lang + $spellcheck + $style + $tabindex + $title + $translate
+    $params = $AccessKey + $Class + $ContentEditable + $Data + $Dir + $Draggable + $Hidden + $Id + $Lang + $Spellcheck + $Style + $Tabindex + $Title + $Translate
 
-    $Open = "<h1" + $params + ">"
+    if ( ($param -like $null) ) {
+
+        $Open = "<h1" + $params + ">"
+
+    } else {
+
+        $Open = "<h1 " + $params + ">"
+
+    }
+
     $Close = "</h1>"
 
-    $Tag = $Open + $Text + $Close
+    $HOneTag = $Open + $Text + $Close
 
-    return $Tag
+    return $HOneTag
     
 }
